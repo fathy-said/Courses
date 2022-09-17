@@ -222,10 +222,42 @@ let switcherSection = document.querySelector(".switcher");
 let switcherBoxLeft = document.querySelector(".switcher .box-left");
 let switcherBoxRight = document.querySelector(".switcher .box-right");
 let switcherColors = document.querySelectorAll(".switcher .icon");
-let switcherDark = document.querySelector(".switcher .dark .form-check input");
+let switcherDark = document.querySelector(".switcher .dark input");
+let switcherGlassColors = document.querySelector(".all-section");
+let switcherGlass = document.querySelector(
+    ".switcher .glass-box .form-check input"
+);
 ////
+// localStorage-glass-option
+// let localStorageGlass = localStorage.getItem("glass-option");
+// if (localStorageGlass !== null) {
+//     if (localStorageGlass == "glass") {
+//         switcherGlassColors.classList.add("active");
+//         switcherGlassColors.parentElement.classList.add("active");
 
-// localStorage-color-option
+//         switcherGlass.setAttribute("checked", "");
+
+//         console.log("fathy");
+//     } else {
+//         console.log("said");
+//     }
+// }
+// // change-glass
+// switcherGlass.addEventListener("click", (gl) => {
+//     switcherGlassColors.classList.toggle("active");
+//     switcherGlassColors.parentElement.classList.toggle("active");
+
+//     if (switcherGlassColors.classList.contains("active")) {
+//         localStorage.setItem("glass-option", "glass");
+//     }
+//     if (!switcherGlassColors.classList.contains("active")) {
+//         localStorage.setItem("glass-option", "no");
+//         console.log("fathysaid");
+//     }
+// });
+
+//
+// localStorage-mood-option
 let darkOptionLocal = localStorage.getItem("mood-option");
 
 if (darkOptionLocal !== null) {
@@ -317,7 +349,6 @@ switcherBoxRight.addEventListener("click", (e) => {
     switcherBoxRight.style.display = "none";
 });
 ////
-
 // localStorage-color-option
 let colorOptionLocal = localStorage.getItem("color-option");
 
