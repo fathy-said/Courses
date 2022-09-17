@@ -216,6 +216,139 @@ if (beginNers !== null) {
 }
 
 /* end-section-beginners */
+/* start-switcherSection */
+
+let switcherSection = document.querySelector(".switcher");
+let switcherBoxLeft = document.querySelector(".switcher .box-left");
+let switcherBoxRight = document.querySelector(".switcher .box-right");
+let switcherColors = document.querySelectorAll(".switcher .icon");
+let switcherDark = document.querySelector(".switcher .dark .form-check input");
+////
+
+// localStorage-color-option
+let darkOptionLocal = localStorage.getItem("mood-option");
+
+if (darkOptionLocal !== null) {
+    if (darkOptionLocal == "#2c2d36") {
+        document.documentElement.style.setProperty(
+            "--body-bg-color",
+            darkOptionLocal
+        );
+        document.documentElement.style.setProperty("--white", "#30323d");
+        document.documentElement.style.setProperty("--black", "#fff");
+        document.documentElement.style.setProperty(
+            "--border-color-1",
+            "rgb(62, 62, 62)"
+        );
+        switcherDark.setAttribute("checked", "");
+        switcherDark.classList.add("active");
+    }
+
+    // ===
+    else {
+        document.documentElement.style.setProperty(
+            "--body-bg-color",
+            " hsl(var(--hue-value-1), 63%, 97%)"
+        );
+        document.documentElement.style.setProperty("--white", "#fff");
+        document.documentElement.style.setProperty("--black", "#000");
+        document.documentElement.style.setProperty(
+            "--border-color-1",
+            "hsl(0, 0%, 90%)"
+        );
+    }
+}
+///
+
+switcherDark.addEventListener("click", (dr) => {
+    switcherDark.classList.toggle("active");
+
+    // dark-mood
+
+    if (switcherDark.classList.contains("active")) {
+        document.documentElement.style.setProperty(
+            "--body-bg-color",
+            "#2c2d36"
+        );
+        document.documentElement.style.setProperty("--white", "#30323d");
+        document.documentElement.style.setProperty("--black", "#fff");
+        document.documentElement.style.setProperty(
+            "--border-color-1",
+            "rgb(62, 62, 62)"
+        );
+        //    localStorage-append
+        localStorage.setItem("mood-option", "#2c2d36");
+    }
+    // dark-mood
+    else {
+        document.documentElement.style.setProperty(
+            "--body-bg-color",
+            " hsl(var(--hue-value-1), 63%, 97%)"
+        );
+        document.documentElement.style.setProperty("--white", "#fff");
+        document.documentElement.style.setProperty("--black", "#000");
+        document.documentElement.style.setProperty(
+            "--border-color-1",
+            "hsl(0, 0%, 90%)"
+        );
+        //    localStorage-append
+        localStorage.setItem(
+            "mood-option",
+            "hsl(var(--hue-value-1), 63%, 97%)"
+        );
+        localStorage.setItem(
+            "white-option",
+            "hsl(var(--hue-value-1), 63%, 97%)"
+        );
+    }
+});
+////
+
+// show-switcherSection
+switcherBoxLeft.addEventListener("click", (e) => {
+    switcherSection.classList.add("active");
+    switcherBoxLeft.style.display = "none";
+    switcherBoxRight.style.display = "flex";
+});
+// hide-switcherSection
+switcherBoxRight.addEventListener("click", (e) => {
+    switcherSection.classList.remove("active");
+    switcherBoxLeft.style.display = "flex";
+    switcherBoxRight.style.display = "none";
+});
+////
+
+// localStorage-color-option
+let colorOptionLocal = localStorage.getItem("color-option");
+
+if (colorOptionLocal !== null) {
+    document.documentElement.style.setProperty(
+        "--hue-value-1",
+        colorOptionLocal
+    );
+    switcherColors.forEach((ic) => {
+        ic.classList.remove("active");
+        if (ic.dataset.color == colorOptionLocal) {
+            ic.classList.add("active");
+        }
+    });
+}
+
+//
+// loop-in-the-switcherColors
+switcherColors.forEach((ic) => {
+    ic.addEventListener("click", (cl) => {
+        ic.parentElement.querySelector(".active").classList.remove("active");
+        ic.classList.add("active");
+        document.documentElement.style.setProperty(
+            "--hue-value-1",
+            ic.dataset.color
+        );
+        localStorage.setItem("color-option", ic.dataset.color);
+    });
+});
+
+/* end-switcherSection */
 
 // ==========================================
 
